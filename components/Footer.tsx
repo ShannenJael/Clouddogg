@@ -108,6 +108,15 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.75rem", marginBottom: "0.5rem", flexWrap: "wrap" }}>
+            <img src="/tabletmasters-logo.png" alt="TabletMasters LLC" style={{ height: "40px", width: "auto" }} />
+            <p style={{ fontWeight: "bold", margin: 0 }}>
+              CloudDogg is a company of TabletmastersLLC &mdash;{" "}
+              <a href="https://www.tablet-masters.com" target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>
+                Tablet-Masters.com
+              </a>
+            </p>
+          </div>
           <p>&copy; {new Date().getFullYear()} CloudDogg. All rights reserved.</p>
         </div>
       </div>
