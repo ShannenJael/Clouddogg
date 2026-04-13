@@ -128,15 +128,14 @@ export default function HeroSection() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
+            gridTemplateColumns: "repeat(3, 1fr)",
             gap: "1rem",
-            maxWidth: "720px",
+            maxWidth: "560px",
             margin: "0 auto 2.5rem",
           }}
         >
           {[
             ["3", "Cloud Platforms"],
-            ["100+", "Deployments"],
             ["24/7", "Support"],
             ["2022", "Founded"],
           ].map(([num, label]) => (
