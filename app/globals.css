@@ -438,6 +438,11 @@ ul {
   padding: 3.2rem;
   max-width: 660px;
   margin-right: auto;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .home-hero__logo {
