@@ -8,28 +8,31 @@ export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     setStatus("loading");
 
-    const form = e.currentTarget;
+    const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form));
 
     try {
-      const res = await fetch("/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      const json = await res.json();
-      if (json.success) {
+
+      const payload = await response.json();
+
+      if (payload.success) {
         setStatus("ok");
-        setMessage("Thank you! We'll be in touch within 1 business day.");
+        setMessage("Thanks. CloudDogg will reply within one business day.");
         form.reset();
-      } else {
-        setStatus("err");
-        setMessage(json.message || "Something went wrong. Please try again.");
+        return;
       }
+
+      setStatus("err");
+      setMessage(payload.message || "Something went wrong. Please try again.");
     } catch {
       setStatus("err");
       setMessage("Network error. Please try again.");
@@ -37,63 +40,63 @@ export default function ContactForm() {
   }
 
   return (
-    <form id="contact-form" onSubmit={handleSubmit} noValidate>
+    <form className="contact-form" onSubmit={handleSubmit} noValidate>
       <div className="form-grid">
-        <div className="form-group">
+        <div className="form-field">
           <label htmlFor="first_name">First Name *</label>
-          <input type="text" id="first_name" name="first_name" required placeholder="John" />
+          <input id="first_name" name="first_name" type="text" placeholder="John" required />
         </div>
-        <div className="form-group">
+        <div className="form-field">
           <label htmlFor="last_name">Last Name *</label>
-          <input type="text" id="last_name" name="last_name" required placeholder="Doe" />
+          <input id="last_name" name="last_name" type="text" placeholder="Doe" required />
         </div>
-        <div className="form-group full">
+        <div className="form-field form-field--full">
           <label htmlFor="email">Email Address *</label>
-          <input type="email" id="email" name="email" required placeholder="john@company.com" />
+          <input id="email" name="email" type="email" placeholder="john@company.com" required />
         </div>
-        <div className="form-group full">
+        <div className="form-field form-field--full">
           <label htmlFor="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" />
+          <input id="phone" name="phone" type="tel" placeholder="+1 (555) 000-0000" />
         </div>
-        <div className="form-group full">
+        <div className="form-field form-field--full">
           <label htmlFor="service">Service Interest</label>
-          <select id="service" name="service">
-            <option value="">Select a service...</option>
-            <option value="cloud-infrastructure">Cloud Infrastructure</option>
-            <option value="ai-ml">AI &amp; Machine Learning</option>
-            <option value="cybersecurity">Cybersecurity</option>
-            <option value="devops">DevOps &amp; Automation</option>
-            <option value="cloud-migration">Cloud Migration</option>
-            <option value="full-stack">Full-Stack Development</option>
-            <option value="training">Training Program</option>
-            <option value="consulting">Consulting</option>
+          <select id="service" name="service" defaultValue="">
+            <option value="" disabled>
+              Select a service
+            </option>
+            <option value="cloud-platform-engineering">Cloud platform engineering</option>
+            <option value="ai-automation">AI and workflow automation</option>
+            <option value="security-compliance">Security and compliance</option>
+            <option value="data-analytics">Data and analytics foundations</option>
+            <option value="product-development">Product and application delivery</option>
+            <option value="fractional-leadership">Fractional cloud leadership</option>
+            <option value="training">Training program</option>
             <option value="other">Other</option>
           </select>
         </div>
-        <div className="form-group full">
-          <label htmlFor="message">Message *</label>
+        <div className="form-field form-field--full">
+          <label htmlFor="message">How can CloudDogg help? *</label>
           <textarea
             id="message"
             name="message"
             required
-            placeholder="Tell us about your project or question..."
+            placeholder="Tell us about your project, challenge, or the kind of support you need."
           />
         </div>
       </div>
 
-      {status !== "idle" && (
-        <div className={`form-message ${status === "ok" ? "success" : status === "err" ? "error" : ""}`}>
+      {status !== "idle" ? (
+        <p className={`form-note ${status === "ok" ? "form-note--success" : "form-note--error"}`}>
           {message}
-        </div>
-      )}
+        </p>
+      ) : null}
 
       <button
         type="submit"
-        className="btn-primary"
-        style={{ marginTop: "1.25rem", width: "100%", justifyContent: "center" }}
+        className="button button--primary contact-form__submit"
         disabled={status === "loading"}
       >
-        {status === "loading" ? "Sending…" : "Send Message"}
+        {status === "loading" ? "Sending..." : "Send message"}
       </button>
     </form>
   );

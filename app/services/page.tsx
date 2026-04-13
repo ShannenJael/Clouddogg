@@ -1,155 +1,128 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import CTASection from "@/components/CTASection";
+import PageHero from "@/components/PageHero";
+import SectionIntro from "@/components/SectionIntro";
+import { heroStats, platformStack, processSteps, services } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "Our Services",
+  title: "Services",
   description:
-    "CloudDogg cloud solutions: infrastructure, AI/ML, security, migration, DevOps, and full-stack development.",
+    "CloudDogg services include platform engineering, AI automation, security, analytics, product delivery, and fractional cloud leadership.",
 };
-
-const services = [
-  {
-    icon: "☁️",
-    title: "Cloud & AI Infrastructure",
-    desc: "Scalable and flexible cloud and AI infrastructure solutions tailored to your business needs. We architect, deploy, and manage enterprise-grade environments across all major platforms.",
-    tags: ["AWS", "Azure", "GCP", "Multi-Cloud", "Auto-Scaling"],
-  },
-  {
-    icon: "🔒",
-    title: "Security & Compliance",
-    desc: "Robust security measures and compliance strategies to protect your assets and data. Zero-trust architecture with advanced threat detection and regulatory compliance management.",
-    tags: ["Zero-Trust", "SOC2", "HIPAA", "Threat Detection"],
-  },
-  {
-    icon: "🚀",
-    title: "Cloud Migration",
-    desc: "Seamless transition of your existing systems and data to the cloud. We handle assessment, planning, execution, and post-migration optimization with minimal disruption.",
-    tags: ["Assessment", "Lift & Shift", "Re-Architecture", "Data Migration"],
-  },
-  {
-    icon: "📈",
-    title: "Performance Optimization",
-    desc: "Enhance your cloud performance for maximum efficiency and cost-effectiveness. We analyze usage patterns, right-size resources, and implement intelligent auto-scaling strategies.",
-    tags: ["Cost Optimization", "Right-Sizing", "Monitoring", "FinOps"],
-  },
-  {
-    icon: "⚙️",
-    title: "DevOps & Automation",
-    desc: "Streamline your development and operations with cutting-edge DevOps practices. CI/CD pipelines, infrastructure-as-code, and automated testing for faster, reliable deployments.",
-    tags: ["CI/CD", "Terraform", "Kubernetes", "Docker"],
-  },
-  {
-    icon: "🎓",
-    title: "Consulting & Training",
-    desc: "Expert guidance and training to empower your team in cloud technologies. From architectural reviews to hands-on workshops, we build your team's cloud capabilities.",
-    tags: ["Architecture Review", "Workshops", "Certification Prep"],
-  },
-];
-
-const differentiators = [
-  ["🎖️", "Veteran-Founded Excellence", "As a veteran-founded company, we bring military-grade discipline, integrity, and problem-solving skills to every project."],
-  ["🔧", "Tailored Solutions", "We understand every business is unique. Our team develops customized cloud strategies that align perfectly with your goals."],
-  ["💡", "Cutting-Edge Expertise", "Our team stays at the forefront of cloud technology, ensuring you benefit from the latest innovations and best practices."],
-  ["🛡️", "Commitment to Security", "We prioritize the safety and integrity of your data with robust security measures and compliance strategies."],
-];
 
 export default function ServicesPage() {
   return (
     <main>
-      {/* ── Page Hero ── */}
-      <section className="page-hero">
-        <div className="container">
-          <p className="section-label">What We Do</p>
-          <h1>
-            Our <span className="text-gradient">Services</span>
-          </h1>
-          <p>Innovative, secure, and scalable cloud solutions for your business</p>
-        </div>
-      </section>
-
-      {/* ── Mission ── */}
-      <section className="section section-alt">
-        <div className="container">
-          <div className="cta-box" style={{ maxWidth: "800px" }}>
-            <p className="section-label">Our Mission</p>
-            <h2 className="section-title">Empowering Business Through Cloud</h2>
-            <p>
-              At CloudDogg, our mission is to empower businesses and organizations with
-              innovative, secure, and scalable cloud solutions that drive growth, efficiency, and
-              resilience. As a veteran-founded company, we bring unwavering dedication, integrity,
-              and expertise to every partnership, delivering tailored strategies that simplify
-              complexity and unlock new possibilities.
-            </p>
+      <PageHero
+        label="Services"
+        title={
+          <>
+            Strategy, engineering, and delivery services built to make cloud work easier to run.
+          </>
+        }
+        description="The redesigned services page is cleaner, more outcome-focused, and much easier to scan for non-technical buyers and technical leads alike."
+        stats={heroStats}
+        actions={
+          <div className="button-row button-row--center">
+            <Link href="/contact" className="button button--primary">
+              Discuss your project
+            </Link>
+            <Link href="/portfolio" className="button button--secondary">
+              View project outcomes
+            </Link>
           </div>
-        </div>
-      </section>
+        }
+      />
 
-      {/* ── Services Grid ── */}
       <section className="section">
         <div className="container">
-          <p className="section-label text-center">Core Offerings</p>
-          <h2 className="section-title text-center">Our Cloud Solutions</h2>
-          <p className="section-subtitle">
-            End-to-end technology services built to scale with your business.
-          </p>
-          <div className="solutions-grid" style={{ marginTop: "3rem" }}>
-            {services.map((s) => (
-              <div key={s.title} className="solution-card">
-                <div className="solution-card-header">
-                  <div className="solution-icon">{s.icon}</div>
-                  <h3>{s.title}</h3>
-                </div>
-                <div className="solution-card-body">
-                  <p>{s.desc}</p>
-                  <div className="tag-list">
-                    {s.tags.map((t) => (
-                      <span key={t} className="tag">
-                        {t}
-                      </span>
+          <SectionIntro
+            label="Core Capabilities"
+            title="A tighter services architecture across cloud, product, AI, and security."
+            description="Each card is organized around a plain-language offer and practical bullets so buyers can understand the lane quickly."
+            centered
+          />
+
+          <div className="card-grid card-grid--three">
+            {services.map((service) => {
+              const Icon = service.icon;
+
+              return (
+                <article key={service.slug} className="service-card">
+                  <div className="service-card__header">
+                    <div className="feature-card__icon">
+                      <Icon size={22} />
+                    </div>
+                    <h3>{service.title}</h3>
+                  </div>
+                  <p>{service.description}</p>
+                  <ul className="bullet-list">
+                    {service.bullets.map((bullet) => (
+                      <li key={bullet}>{bullet}</li>
                     ))}
+                  </ul>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--soft">
+        <div className="container split-panel">
+          <div className="surface-card surface-card--light">
+            <SectionIntro
+              label="Engagement Model"
+              title="How CloudDogg usually helps teams move."
+              description="The site now explains the delivery rhythm directly, which reduces ambiguity around what happens after contact."
+            />
+
+            <div className="timeline">
+              {processSteps.map((step) => (
+                <div key={step.step} className="timeline__item">
+                  <span>{step.step}</span>
+                  <div>
+                    <h3>{step.title}</h3>
+                    <p>{step.description}</p>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Why Choose Us ── */}
-      <section className="section section-alt">
-        <div className="container">
-          <p className="section-label text-center">Our Difference</p>
-          <h2 className="section-title text-center">Why Choose CloudDogg?</h2>
-          <div className="values-grid" style={{ marginTop: "3rem" }}>
-            {differentiators.map(([icon, title, desc]) => (
-              <div key={title} className="value-card">
-                <div className="value-icon">{icon}</div>
-                <h3>{title}</h3>
-                <p>{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA ── */}
-      <section className="section cta-section">
-        <div className="container">
-          <div className="cta-box">
-            <p className="section-label">Get Started</p>
-            <h2 className="section-title">Ready to Transform Your Business?</h2>
-            <p>
-              Let&apos;s discuss how CloudDogg can help you leverage the power of the cloud to drive
-              growth, enhance efficiency, and build resilience in your organization.
-            </p>
-            <div className="btn-group" style={{ justifyContent: "center", marginTop: "2rem" }}>
-              <Link href="/contact" className="btn-primary btn-lg">
-                Get Started Today
-              </Link>
+              ))}
             </div>
           </div>
+
+          <div className="surface-card">
+            <p className="eyebrow">Tech Familiarity</p>
+            <h2>Modern tooling, presented without the buzzword fog.</h2>
+            <p>
+              Buyers often need proof of technical depth. This refreshed section surfaces the
+              stack without overwhelming the page.
+            </p>
+            <div className="tag-row tag-row--wide">
+              {platformStack.map((item) => (
+                <span key={item} className="tag tag--soft">
+                  {item}
+                </span>
+              ))}
+            </div>
+            <Link href="/contact" className="text-link">
+              Ask about your stack
+              <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </section>
+
+      <CTASection
+        label="Work With CloudDogg"
+        title="Need senior support for platform decisions, automation, or product cleanup?"
+        description="Use the contact page to describe the current bottleneck, the timeline, and what the team has already tried."
+        primaryHref="/contact"
+        primaryLabel="Start a project"
+        secondaryHref="/about"
+        secondaryLabel="Learn about CloudDogg"
+      />
     </main>
   );
 }

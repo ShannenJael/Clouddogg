@@ -1,24 +1,30 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { footerLinks } from "@/lib/site-data";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "err">("idle");
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  async function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
     setStatus("loading");
+
     try {
-      const res = await fetch("/api/newsletter", {
+      const response = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
-      const json = await res.json();
-      setStatus(json.success ? "ok" : "err");
-      if (json.success) setEmail("");
+
+      const payload = await response.json();
+      setStatus(payload.success ? "ok" : "err");
+
+      if (payload.success) setEmail("");
     } catch {
       setStatus("err");
     }
@@ -26,95 +32,110 @@ export default function Footer() {
 
   return (
     <footer className="site-footer">
-      <div className="footer-container">
+      <div className="container">
         <div className="footer-grid">
-          <div className="footer-col">
-            <h3 className="footer-heading">About CloudDogg</h3>
-            <p className="footer-text">
-              CloudDogg is a company of Tabletmasters LLC — your trusted partner in cloud
-              services, offering innovative solutions for businesses of all sizes.
-              Veteran-founded. Mission-driven.
-            </p>
-          </div>
-
-          <div className="footer-col">
-            <h3 className="footer-heading">Quick Links</h3>
-            <ul className="footer-links">
-              <li><Link href="/services">Services</Link></li>
-              <li><Link href="/training">Training</Link></li>
-              <li><Link href="/about">About Us</Link></li>
-              <li><Link href="/portfolio">Portfolio</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-col">
-            <h3 className="footer-heading">Legal</h3>
-            <ul className="footer-links">
-              <li><Link href="/terms">Terms of Service</Link></li>
-              <li><Link href="/privacy">Privacy Policy</Link></li>
-              <li><Link href="/cookies">Cookie Policy</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-col">
-            <h3 className="footer-heading">Stay Updated</h3>
-            <p className="footer-text" style={{ marginBottom: "1rem" }}>
-              Get cloud insights and training updates delivered to your inbox.
-            </p>
-            <form onSubmit={handleSubmit}>
-              <div className="footer-form-row">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  aria-label="Email address"
-                />
-                <button type="submit" disabled={status === "loading"}>
-                  {status === "loading" ? "…" : "Subscribe"}
-                </button>
+          <div className="footer-brand">
+            <Link href="/" className="footer-brand__logo" aria-label="CloudDogg Home">
+              <Image src="/logo.png" alt="CloudDogg" width={48} height={48} />
+              <div>
+                <span>CloudDogg</span>
+                <small>Veteran-founded cloud strategy, delivery, and training.</small>
               </div>
-              {status === "ok" && (
-                <p style={{ fontSize: "0.8rem", color: "#10b981", marginTop: "0.5rem" }}>
-                  Subscribed! Thank you.
-                </p>
-              )}
+            </Link>
+
+            <p>
+              CloudDogg helps teams modernize infrastructure, launch practical AI systems, and
+              create cleaner delivery experiences with stronger UX and operational clarity.
+            </p>
+
+            <div className="footer-contact-list">
+              <a href="mailto:joshua.dixon@clouddogg.com">
+                <Mail size={16} />
+                joshua.dixon@clouddogg.com
+              </a>
+              <a href="tel:+18503765811">
+                <Phone size={16} />
+                +1 (850) 376-5811
+              </a>
+              <span>
+                <MapPin size={16} />
+                Mary Esther, Florida
+              </span>
+            </div>
+          </div>
+
+          <div>
+            <h3>Company</h3>
+            <ul className="footer-links">
+              {footerLinks.company.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href}>{item.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3>Resources</h3>
+            <ul className="footer-links">
+              {footerLinks.resources.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href}>{item.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3>Stay Updated</h3>
+            <p className="footer-signup-copy">
+              Get cloud insights, training updates, and product thinking delivered to your inbox.
+            </p>
+            <form onSubmit={handleSubmit} className="footer-form">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="Email address"
+                aria-label="Email address"
+              />
+              <button type="submit" className="button button--primary" disabled={status === "loading"}>
+                {status === "loading" ? "Sending..." : "Subscribe"}
+              </button>
             </form>
-            <div className="social-links">
-              <a
-                href="https://linkedin.com/company/clouddogg"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                </svg>
-                LinkedIn
-              </a>
-              <a
-                href="https://facebook.com/clouddogg"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                </svg>
-                Facebook
-              </a>
+            {status === "ok" ? <p className="form-note form-note--success">Subscribed successfully.</p> : null}
+            {status === "err" ? <p className="form-note form-note--error">Please try again.</p> : null}
+
+            <div className="footer-socials">
+              {footerLinks.socials.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.label}
+                  <ArrowUpRight size={16} />
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.75rem", marginBottom: "0.5rem", flexWrap: "wrap" }}>
-            <img src="/tabletmasters-logo.png" alt="TabletMasters LLC" style={{ height: "40px", width: "auto" }} />
-            <p style={{ fontWeight: "bold", margin: 0 }}>
-              CloudDogg is a company of TabletmastersLLC &mdash;{" "}
-              <a href="https://www.tablet-masters.com" target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>
-                Tablet-Masters.com
-              </a>
+          <div className="footer-bottom__brand">
+            <a href="https://www.tablet-masters.com" target="_blank" rel="noopener noreferrer">
+              <Image
+                src="/tabletmasters-logo.png"
+                alt="Tablet Masters"
+                width={188}
+                height={60}
+              />
+            </a>
+            <p>
+              CloudDogg operates under Tabletmasters LLC and shares the same focus on cleaner
+              customer paths and service clarity.
             </p>
           </div>
           <p>&copy; {new Date().getFullYear()} CloudDogg. All rights reserved.</p>

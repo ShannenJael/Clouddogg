@@ -1,81 +1,103 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const navLinks = [
-  { href: "/services", label: "Services" },
-  { href: "/training", label: "Training" },
-  { href: "/about", label: "About" },
-  { href: "/insights", label: "Insights" },
-  { href: "/portfolio", label: "Portfolio" },
-];
+import { ArrowRight } from "lucide-react";
+import { navLinks } from "@/lib/site-data";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 16);
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      document.body.style.overflow = "";
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
 
   return (
-    <header className={`site-header${scrolled ? " scrolled" : ""}`} id="site-header">
-      <nav className="navbar">
-        <div className="nav-container">
-          <Link href="/" className="nav-logo" aria-label="CloudDogg Home">
-            <Image
-              src="/logo.png"
-              alt="CloudDogg Logo"
-              width={40}
-              height={40}
-              priority
-            />
-            <span className="logo-text">
-              Cloud<span className="logo-accent">Dogg</span>
-            </span>
+    <header className={`site-header${isScrolled ? " site-header--scrolled" : ""}`}>
+      <nav className="container navbar" aria-label="Main navigation">
+        <div className="navbar__shell">
+          <Link href="/" className="navbar__brand" aria-label="CloudDogg Home">
+            <Image src="/logo.png" alt="CloudDogg" width={40} height={40} priority />
+            <div>
+              <span className="navbar__name">CloudDogg</span>
+              <span className="navbar__tag">Cloud strategy and delivery</span>
+            </div>
           </Link>
 
           <button
-            className={`hamburger${open ? " open" : ""}`}
-            onClick={() => setOpen((o) => !o)}
+            type="button"
+            className={`navbar__toggle${isOpen ? " is-open" : ""}`}
+            aria-expanded={isOpen}
+            aria-controls="site-menu"
             aria-label="Toggle navigation"
-            aria-expanded={open}
+            onClick={() => setIsOpen((value) => !value)}
           >
             <span />
             <span />
             <span />
           </button>
 
-          <ul className={`nav-links${open ? " open" : ""}`} id="nav-links">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={`nav-link${pathname === link.href ? " active" : ""}`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            <li>
-              <Link
-                href="/contact"
-                className={`nav-cta${pathname === "/contact" ? " active" : ""}`}
-              >
-                Contact
-              </Link>
-            </li>
-          </ul>
+          <div className={`navbar__panel${isOpen ? " is-open" : ""}`} id="site-menu">
+            <ul className="navbar__links">
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+
+                return (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className={`navbar__link${isActive ? " is-active" : ""}`}
+                      aria-current={isActive ? "page" : undefined}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <Link
+              href="/contact"
+              className={`button button--primary navbar__cta${
+                pathname === "/contact" ? " is-active" : ""
+              }`}
+            >
+              Start a Project
+              <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </nav>
     </header>

@@ -1,19 +1,27 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Manrope, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 
-const inter = Inter({ subsets: ["latin"] });
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-body",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+});
 
 export const metadata: Metadata = {
   title: {
     template: "%s | CloudDogg",
-    default: "CloudDogg - Elevate Your Business with Cloud Solutions",
+    default: "CloudDogg | Cloud Strategy, Delivery, and Training",
   },
   description:
-    "CloudDogg - Veteran-founded cloud solutions provider. AWS, Azure, GCP migration, AI/ML, cybersecurity, and full-stack development services.",
+    "CloudDogg is a veteran-founded cloud solutions partner focused on platform engineering, AI automation, product delivery, and cloud training.",
 };
 
 export default function RootLayout({
@@ -21,7 +29,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${manrope.variable} ${spaceGrotesk.variable}`}>
         <Navbar />
         {children}
         <Footer />

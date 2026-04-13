@@ -9,44 +9,43 @@ export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem(COOKIE_KEY);
-    if (!consent) {
-      const t = setTimeout(() => setVisible(true), 1000);
-      return () => clearTimeout(t);
+    const existingValue = localStorage.getItem(COOKIE_KEY);
+
+    if (!existingValue) {
+      const timer = window.setTimeout(() => setVisible(true), 1200);
+      return () => window.clearTimeout(timer);
     }
   }, []);
 
-  function accept() {
-    localStorage.setItem(COOKIE_KEY, "accepted");
-    setVisible(false);
-  }
-
-  function decline() {
-    localStorage.setItem(COOKIE_KEY, "declined");
+  function dismiss(value: "accepted" | "declined") {
+    localStorage.setItem(COOKIE_KEY, value);
     setVisible(false);
   }
 
   if (!visible) return null;
 
   return (
-    <div className="cookie-banner">
-      <div className="cookie-content">
+    <div className="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
+      <div className="cookie-banner__copy">
+        <strong>Cookie preferences</strong>
         <p>
-          We use cookies to enhance your browsing experience, serve personalized content, and
-          analyze our traffic. By clicking &quot;Accept All&quot;, you consent to our use of cookies.
+          CloudDogg uses cookies for basic site analytics and experience improvements. You can
+          review the details before choosing what to allow.
         </p>
-        <div className="cookie-actions">
-          <button className="btn-outline" onClick={decline}>
-            Decline
-          </button>
-          <button className="btn-primary" onClick={accept}>
-            Accept All
-          </button>
-        </div>
-        <div className="cookie-policy-links">
-          <Link href="/privacy">Privacy Policy</Link> |{" "}
-          <Link href="/cookies">Cookie Policy</Link>
-        </div>
+      </div>
+
+      <div className="cookie-banner__actions">
+        <button type="button" className="button button--ghost" onClick={() => dismiss("declined")}>
+          Decline
+        </button>
+        <button type="button" className="button button--primary" onClick={() => dismiss("accepted")}>
+          Accept cookies
+        </button>
+      </div>
+
+      <div className="cookie-banner__links">
+        <Link href="/privacy">Privacy Policy</Link>
+        <Link href="/cookies">Cookie Policy</Link>
       </div>
     </div>
   );
