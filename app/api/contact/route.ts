@@ -1,7 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,       // e.g. mail.clouddogg.com
+  port: Number(process.env.SMTP_PORT) || 587,
+  secure: false,                      // true for port 465, false for 587
+  auth: {
+    user: process.env.SMTP_USER,     // your Bluehost email address
+    pass: process.env.SMTP_PASS,     // your Bluehost email password
+  },
+});
 
 export async function POST(req: NextRequest) {
   try {
@@ -15,8 +23,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    await resend.emails.send({
-      from: "CloudDogg Contact Form <noreply@clouddogg.com>",
+    await transporter.sendMail({
+      from: `"CloudDogg Contact Form" <${process.env.SMTP_USER}>`,
       to: "service@clouddogg.com",
       replyTo: email,
       subject: `New project inquiry from ${first_name} ${last_name}`,
