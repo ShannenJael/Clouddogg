@@ -42,7 +42,18 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
 
   return (
     <main>
-      <section className="page-hero article-hero">
+      <section className={`page-hero article-hero${article.slug === "blockchain-cloud-applications" ? " article-hero--video" : ""}`}>
+        {article.slug === "blockchain-cloud-applications" && (
+          <video
+            className="article-hero__bg-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src="/videos/blockchain-hero.mp4" type="video/mp4" />
+          </video>
+        )}
         <div className="container">
           <div className="page-hero__inner article-hero__content">
             <Link href="/insights" className="text-link text-link--back">
@@ -51,17 +62,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </Link>
             <p className="eyebrow">{article.category}</p>
             {article.slug === "blockchain-cloud-applications" ? (
-              <>
-                <Image
-                  src="/images/blockchain-hero.png"
-                  alt="What is Blockchain?"
-                  width={1456}
-                  height={816}
-                  className="article-hero__image"
-                  priority
-                />
-                <h3>{article.title}</h3>
-              </>
+              <h3>{article.title}</h3>
             ) : (
               <h1>{article.title}</h1>
             )}

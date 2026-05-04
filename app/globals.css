@@ -1333,6 +1333,26 @@ ul {
   margin-bottom: 1.5rem;
 }
 
+.article-hero--video {
+  position: relative;
+  overflow: hidden;
+}
+
+.article-hero__bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+.article-hero--video .container {
+  position: relative;
+  z-index: 1;
+}
+
 .legal-layout {
   display: grid;
   gap: 1rem;
