@@ -93,6 +93,7 @@ export type Partner = {
 
 export const navLinks: LinkItem[] = [
   { href: "/services", label: "Services" },
+  { href: "/insights/blockchain-cloud-applications", label: "Blockchain" },
   { href: "/training", label: "Training" },
   { href: "/about", label: "About" },
   { href: "/insights", label: "Insights" },
