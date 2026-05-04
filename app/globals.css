@@ -1326,6 +1326,13 @@ ul {
   margin: 0 auto;
 }
 
+.article-hero__image {
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
 .legal-layout {
   display: grid;
   gap: 1rem;

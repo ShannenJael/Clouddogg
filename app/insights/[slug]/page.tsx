@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MoveLeft, MoveRight } from "lucide-react";
@@ -49,7 +50,21 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               Back to insights
             </Link>
             <p className="eyebrow">{article.category}</p>
-            <h1>{article.title}</h1>
+            {article.slug === "blockchain-cloud-applications" ? (
+              <>
+                <Image
+                  src="/images/blockchain-hero.png"
+                  alt="What is Blockchain?"
+                  width={1456}
+                  height={816}
+                  className="article-hero__image"
+                  priority
+                />
+                <h3>{article.title}</h3>
+              </>
+            ) : (
+              <h1>{article.title}</h1>
+            )}
             <p className="page-hero__copy">{article.excerpt}</p>
             <div className="article-hero__meta">
               <span>{article.date}</span>
