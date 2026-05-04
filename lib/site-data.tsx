@@ -625,7 +625,7 @@ export const contactDetails = [
   {
     title: "Email",
     description: "Reach CloudDogg directly for project discussions, partnerships, or program questions.",
-    lines: ["joshua.dixon@clouddogg.com", "thedixonmissions@gmail.com"],
+    lines: ["joshua.dixon@clouddogg.com", "service@clouddogg.com"],
   },
   {
     title: "Phone",
