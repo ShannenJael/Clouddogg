@@ -46,7 +46,7 @@ export default function NewsletterForm() {
       {status === "err" ? <p className="form-note form-note--error">Something went wrong. Please try again.</p> : null}
 
       <p className="newsletter-form__caption">
-        Occasional product, cloud, and training updates. No spam.
+        Occasional product, cloud, AI, blockchain, and training updates. No spam.
       </p>
     </form>
   );

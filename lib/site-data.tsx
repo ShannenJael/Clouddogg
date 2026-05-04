@@ -101,7 +101,7 @@ export const navLinks: LinkItem[] = [
 
 export const heroStats: Stat[] = [
   { value: "10+ yrs", label: "Cloud delivery experience" },
-  { value: "AI + Cloud", label: "Integrated delivery" },
+  { value: "Cloud Apps", label: "AI + selective Web3" },
   { value: "24/7", label: "Operational readiness" },
   { value: "Veteran-led", label: "Execution discipline" },
 ];
@@ -149,6 +149,18 @@ export const services: Service[] = [
     description:
       "Build AI-powered internal tools, copilots, and operational workflows that shorten decision cycles and reduce manual effort.",
     bullets: ["LLM integration and orchestration", "Retrieval and knowledge workflows", "Automation around support and operations"],
+  },
+  {
+    slug: "blockchain-cloud-applications",
+    icon: Blocks,
+    title: "Blockchain cloud applications",
+    description:
+      "Build blockchain-enabled products, smart contract workflows, and Web3 integrations on reliable cloud foundations.",
+    bullets: [
+      "Smart contract and Web3 app foundations",
+      "Tokenized workflows, audit trails, and provenance",
+      "Cloud-hosted APIs, wallets, and integration layers",
+    ],
   },
   {
     slug: "security-compliance",
@@ -274,6 +286,15 @@ export const portfolioProjects: Project[] = [
   },
   {
     icon: Blocks,
+    category: "Blockchain application delivery",
+    title: "Smart contract backed product workflow",
+    summary:
+      "Built a blockchain-enabled application foundation with wallet-aware flows, cloud APIs, and a cleaner path from prototype to usable product experience.",
+    outcome: "Created a reusable blockchain app foundation that could support demos, testing, and future customer workflows.",
+    tags: ["Blockchain", "Smart Contracts", "Web3", "Cloud APIs"],
+  },
+  {
+    icon: DatabaseZap,
     category: "Analytics and decision support",
     title: "Real-time executive reporting layer",
     summary:
@@ -561,6 +582,39 @@ export const articles: Article[] = [
     ],
   },
   {
+    slug: "blockchain-cloud-applications",
+    category: "Blockchain",
+    title: "Where Blockchain Belongs in a Cloud Application Strategy",
+    date: "May 4, 2026",
+    readTime: "5 min read",
+    excerpt:
+      "Blockchain creates the most value when it supports trust, auditability, payments, or shared ownership instead of acting as a vague innovation label.",
+    intro:
+      "Blockchain does not need to become the center of every technology strategy. It works best as a focused application capability: a way to support smart contracts, provenance, tokenized workflows, payment rails, or shared records when a normal database is not enough for the trust model.",
+    takeaways: [
+      "Start with the business workflow before choosing a chain or token model.",
+      "Cloud architecture still matters because users need reliable apps, APIs, and data flows.",
+      "The strongest blockchain projects make trust, ownership, or auditability easier to verify.",
+    ],
+    sections: [
+      {
+        title: "Use blockchain only where it earns its place",
+        body:
+          "A blockchain layer should solve a real coordination or trust problem. If one company controls every participant and every record, a traditional database may be simpler. If the workflow needs shared verification, programmable ownership, or tamper-resistant history, blockchain can become useful.",
+      },
+      {
+        title: "Keep the product experience grounded",
+        body:
+          "Users still need clean onboarding, clear account flows, useful notifications, and stable performance. The cloud application around the chain often determines whether the product feels trustworthy enough to use.",
+      },
+      {
+        title: "Design for risk and operations early",
+        body:
+          "Smart contracts, wallets, keys, compliance reviews, and transaction monitoring require careful planning. Treat blockchain work as secure product engineering, not just a prototype that happens to use a chain.",
+      },
+    ],
+  },
+  {
     slug: "devops-best-practices",
     category: "DevOps",
     title: "DevOps Best Practices for Cloud-Native Teams",
@@ -649,6 +703,10 @@ export const capabilityHighlights: Highlight[] = [
     description: "Practical workflow automation, copilots, and data-aware delivery for real use cases.",
   },
   {
+    title: "Blockchain cloud apps",
+    description: "Smart contract, Web3, and audit-friendly application work when blockchain is the right fit.",
+  },
+  {
     title: "Training and enablement",
     description: "Mentorship and team development that close the gap between theory and execution.",
   },
@@ -657,7 +715,7 @@ export const capabilityHighlights: Highlight[] = [
 export const homeProofPoints = [
   "Veteran-founded delivery with modern product and platform thinking",
   "Clean paths for services, training, and advisory work",
-  "UX-first refresh modeled after the clearer conversion spine seen on Tablet Masters",
+  "Selective blockchain application work where trust, ownership, or auditability matters",
 ];
 
 export const platformStack = [
@@ -672,6 +730,8 @@ export const platformStack = [
   "Python",
   "PostgreSQL",
   "LLM Workflows",
+  "Blockchain Apps",
+  "Smart Contracts",
   "Observability",
 ];
 

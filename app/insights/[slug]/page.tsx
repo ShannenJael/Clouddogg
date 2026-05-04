@@ -113,7 +113,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <CTASection
         label="Need Help Applying This"
         title="Want CloudDogg to turn these ideas into an actual delivery plan?"
-        description="Use the contact page if your team needs support translating cloud, AI, or DevOps strategy into work that can ship."
+        description="Use the contact page if your team needs support translating cloud, AI, blockchain, or DevOps strategy into work that can ship."
         primaryHref="/contact"
         primaryLabel="Start a conversation"
         secondaryHref="/services"

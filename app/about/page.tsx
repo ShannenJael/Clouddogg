@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 const storyPoints = [
   "CloudDogg was founded in 2022 by Joshua Dixon after seeing how often cloud transformation was framed in ways that were technically dense but operationally unclear.",
-  "The company combines DevOps and cloud engineering depth with stronger UX thinking, because technical value is easier to trust when the experience around it is also clear.",
+  "The company combines DevOps, cloud engineering, AI, and selective blockchain application work with stronger UX thinking, because technical value is easier to trust when the experience around it is also clear.",
   "That same mindset shapes the brand: cleaner navigation, better pacing, sharper service structure, and clearer conversion paths throughout the site.",
 ];
 
@@ -52,7 +52,7 @@ const companySignals = [
   {
     title: "Cloud depth with product and UX awareness",
     description:
-      "The work is not limited to infrastructure decisions. It also pays attention to usability, handoff quality, and how systems are experienced by real teams.",
+      "The work is not limited to infrastructure decisions. It also pays attention to AI, blockchain, usability, handoff quality, and how systems are experienced by real teams.",
   },
   {
     title: "Practical delivery over abstract consulting",
@@ -64,7 +64,7 @@ const companySignals = [
 const founderFacts = [
   "Founded in 2022",
   "Veteran-led delivery mindset",
-  "Cloud, DevOps, and UX-aware execution",
+  "Cloud, DevOps, AI, and blockchain-aware execution",
   "Focused on systems teams can actually operate",
 ];
 

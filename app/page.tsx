@@ -54,7 +54,8 @@ export default function HomePage() {
             </h1>
             <p className="home-hero__copy">
               CloudDogg helps businesses modernize infrastructure, ship better digital experiences,
-              and build AI workflows that make operations faster instead of more confusing.
+              build AI workflows, and add blockchain-backed application features when trust,
+              ownership, or auditability matter.
             </p>
 
             <div className="button-row">
@@ -98,7 +99,7 @@ export default function HomePage() {
               <h2>Three ways people usually arrive at CloudDogg</h2>
               <p>
                 The redesigned homepage makes the entry path obvious: platform work, AI delivery,
-                or training and mentorship.
+                blockchain cloud applications, or training and mentorship.
               </p>
             </div>
 
@@ -149,7 +150,7 @@ export default function HomePage() {
         <div className="container">
           <SectionIntro
             label="Services"
-            title="Cloud, AI, security, and product work under one sharper system."
+            title="Cloud, AI, blockchain, security, and product work under one sharper system."
             description="The site now presents the offer with stronger hierarchy, cleaner cards, and more useful scannability for decision-makers."
           />
 
@@ -341,7 +342,7 @@ export default function HomePage() {
             <p className="eyebrow">Stay Connected</p>
             <h2>Get CloudDogg updates without the clutter.</h2>
             <p>
-              Subscribe for practical cloud, AI, UX, and training updates as the business
+              Subscribe for practical cloud, AI, blockchain, UX, and training updates as the business
               continues to evolve.
             </p>
           </div>
@@ -357,7 +358,7 @@ export default function HomePage() {
 
       <CTASection
         label="Next Step"
-        title="Need a stronger cloud presence, better product UX, or delivery support?"
+        title="Need a stronger cloud presence, better product UX, or application delivery support?"
         description="Use the redesigned contact path to outline what you are building and where the current friction is. CloudDogg can take it from there."
         primaryHref="/contact"
         primaryLabel="Start the conversation"

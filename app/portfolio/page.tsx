@@ -9,11 +9,11 @@ import { portfolioProjects } from "@/lib/site-data";
 export const metadata: Metadata = {
   title: "Portfolio",
   description:
-    "Review CloudDogg project outcomes across healthcare, AI automation, security, analytics, and product delivery.",
+    "Review CloudDogg project outcomes across healthcare, AI automation, blockchain applications, security, analytics, and product delivery.",
 };
 
 const impactStats = [
-  { value: "Cloud + AI", label: "Delivery and transformation work" },
+  { value: "Cloud + AI + Web3", label: "Delivery and transformation work" },
   { value: "65%", label: "Support load reduction on AI workflow work" },
   { value: "40%", label: "Cost reduction on a healthcare migration" },
   { value: "99.9%", label: "Reliability target across managed environments" },
@@ -70,7 +70,7 @@ export default function PortfolioPage() {
         label="Portfolio"
         title={
           <>
-            Outcome-led project work across cloud, AI, product, and security.
+            Outcome-led project work across cloud, AI, blockchain, product, and security.
           </>
         }
         description="The portfolio now places the proof in a clearer order: first the delivery patterns, then featured examples, then the broader library of case work."
@@ -118,7 +118,7 @@ export default function PortfolioPage() {
             <SectionIntro
               label="Proof Patterns"
               title="The portfolio works best when the outcomes are framed before the case details."
-              description="These projects collectively show how CloudDogg tends to create value across migrations, automation, security, and product delivery."
+              description="These projects collectively show how CloudDogg tends to create value across migrations, automation, blockchain application work, security, and product delivery."
             />
 
             <div className="detail-list">
@@ -145,6 +145,7 @@ export default function PortfolioPage() {
             <div className="tag-row tag-row--wide">
               <span className="tag tag--soft">Migration</span>
               <span className="tag tag--soft">Automation</span>
+              <span className="tag tag--soft">Blockchain</span>
               <span className="tag tag--soft">Security</span>
               <span className="tag tag--soft">Analytics</span>
               <span className="tag tag--soft">Product Delivery</span>
@@ -230,7 +231,7 @@ export default function PortfolioPage() {
 
       <CTASection
         label="Your Project"
-        title="Need CloudDogg to help shape your next migration, automation push, or product rebuild?"
+        title="Need CloudDogg to help shape your next migration, automation push, blockchain app, or product rebuild?"
         description="Share the business goal and the current bottleneck. The contact flow is built to make the work easier to explain clearly."
         primaryHref="/contact"
         primaryLabel="Start a conversation"

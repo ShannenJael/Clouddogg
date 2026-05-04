@@ -18,10 +18,10 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: {
     template: "%s | CloudDogg",
-    default: "CloudDogg | Cloud Strategy, Delivery, and Training",
+    default: "CloudDogg | Cloud Strategy, AI, and Application Delivery",
   },
   description:
-    "CloudDogg is a veteran-founded cloud solutions partner focused on platform engineering, AI automation, product delivery, and cloud training.",
+    "CloudDogg is a veteran-founded cloud solutions partner focused on platform engineering, AI automation, blockchain cloud applications, product delivery, and cloud training.",
 };
 
 export default function RootLayout({

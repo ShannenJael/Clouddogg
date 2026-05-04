@@ -45,7 +45,7 @@ export default function Footer() {
 
             <p>
               CloudDogg helps teams modernize infrastructure, launch practical AI systems, and
-              create cleaner delivery experiences with stronger UX and operational clarity.
+              build select blockchain cloud applications with stronger UX and operational clarity.
             </p>
 
             <div className="footer-contact-list">
@@ -89,7 +89,7 @@ export default function Footer() {
           <div>
             <h3>Stay Updated</h3>
             <p className="footer-signup-copy">
-              Get cloud insights, training updates, and product thinking delivered to your inbox.
+              Get cloud, AI, blockchain, training, and product thinking delivered to your inbox.
             </p>
             <form onSubmit={handleSubmit} className="footer-form">
               <input

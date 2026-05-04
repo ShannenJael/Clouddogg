@@ -7,7 +7,7 @@ import { contactDetails } from "@/lib/site-data";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact CloudDogg to discuss cloud strategy, AI automation, product delivery, or training and mentorship.",
+    "Contact CloudDogg to discuss cloud strategy, AI automation, blockchain cloud applications, product delivery, or training and mentorship.",
 };
 
 const detailIcons = [Mail, Phone, MapPin];
@@ -31,8 +31,9 @@ export default function ContactPage() {
             <p className="eyebrow">Reach CloudDogg</p>
             <h2>Start with the channel that fits your question.</h2>
             <p>
-              Whether you are planning a migration, cleaning up delivery operations, or asking
-              about the training program, CloudDogg can route the conversation quickly.
+              Whether you are planning a migration, scoping a blockchain application, cleaning up
+              delivery operations, or asking about the training program, CloudDogg can route the
+              conversation quickly.
             </p>
 
             <div className="contact-detail-list">

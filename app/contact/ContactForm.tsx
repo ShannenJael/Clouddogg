@@ -66,6 +66,7 @@ export default function ContactForm() {
             </option>
             <option value="cloud-platform-engineering">Cloud platform engineering</option>
             <option value="ai-automation">AI and workflow automation</option>
+            <option value="blockchain-cloud-applications">Blockchain cloud applications</option>
             <option value="security-compliance">Security and compliance</option>
             <option value="data-analytics">Data and analytics foundations</option>
             <option value="product-development">Product and application delivery</option>

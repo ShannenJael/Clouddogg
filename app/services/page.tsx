@@ -9,14 +9,15 @@ import { heroStats, platformStack, processSteps, services } from "@/lib/site-dat
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "CloudDogg services include platform engineering, AI automation, security, analytics, product delivery, and fractional cloud leadership.",
+    "CloudDogg services include platform engineering, AI automation, blockchain cloud applications, security, analytics, product delivery, and fractional cloud leadership.",
 };
 
 export default function ServicesPage() {
   const prioritySignals = [
     "Need senior guidance before you hire full-time platform leadership",
     "Want AI or automation tied to a real workflow instead of a demo",
-    "Have delivery friction across cloud, product, security, or reporting",
+    "Need blockchain application support without turning the whole strategy into crypto",
+    "Have delivery friction across cloud, product, security, blockchain, or reporting",
   ];
 
   const engagementNotes = [
@@ -180,8 +181,9 @@ export default function ServicesPage() {
               <p className="eyebrow">Conversation Starter</p>
               <h2>Bring the bottleneck, the timeline, and the handoff reality.</h2>
               <p>
-                Whether the issue is platform drift, AI adoption, security cleanup, or product
-                friction, the first step is usually making the problem concrete enough to solve.
+                Whether the issue is platform drift, AI adoption, blockchain application scope,
+                security cleanup, or product friction, the first step is usually making the
+                problem concrete enough to solve.
               </p>
               <Link href="/contact" className="text-link">
                 Ask about your stack
@@ -224,7 +226,7 @@ export default function ServicesPage() {
 
       <CTASection
         label="Work With CloudDogg"
-        title="Need senior support for platform decisions, automation, security, or product cleanup?"
+        title="Need senior support for platform decisions, automation, blockchain apps, security, or product cleanup?"
         description="Use the contact page to describe the current bottleneck, the timeline, and what the team has already tried."
         primaryHref="/contact"
         primaryLabel="Start a project"

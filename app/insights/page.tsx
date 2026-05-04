@@ -9,7 +9,7 @@ import { articles } from "@/lib/site-data";
 export const metadata: Metadata = {
   title: "Insights",
   description:
-    "Read CloudDogg insights on cloud strategy, security, AI workflows, DevOps, and veteran career growth in tech.",
+    "Read CloudDogg insights on cloud strategy, security, AI workflows, blockchain cloud applications, DevOps, and veteran career growth in tech.",
 };
 
 const [featuredArticle, ...remainingArticles] = articles;
@@ -27,14 +27,14 @@ const topicCards = [
     label: "Reading Collections",
     title: "Browse by topic if you already know the kind of problem or idea you care about.",
     description:
-      "This path helps readers move faster through cloud strategy, security, AI, delivery, and career content.",
+      "This path helps readers move faster through cloud strategy, security, AI, blockchain, delivery, and career content.",
   },
   {
     href: "#subscribe",
     label: "Stay Updated",
     title: "Subscribe if you want future writing without hunting around the site.",
     description:
-      "This path is for readers who want occasional practical updates on cloud, AI, UX, and career growth.",
+      "This path is for readers who want occasional practical updates on cloud, AI, blockchain, UX, and career growth.",
   },
 ];
 
@@ -60,6 +60,11 @@ const collections = [
     title: "AI and career transition",
     description:
       "Enterprise AI adoption, workflow automation, and veteran-centered guidance for moving into cloud work.",
+  },
+  {
+    title: "Blockchain cloud applications",
+    description:
+      "Practical guidance on smart contracts, Web3 integrations, provenance, and where blockchain belongs in a cloud strategy.",
   },
 ];
 
@@ -194,8 +199,8 @@ export default function InsightsPage() {
             <p className="eyebrow">Subscribe</p>
             <h2>Get new CloudDogg writing in your inbox.</h2>
             <p>
-              Subscribe for updates on cloud delivery, platform UX, AI operations, and career
-              growth for veterans entering tech.
+              Subscribe for updates on cloud delivery, platform UX, AI operations, blockchain
+              applications, and career growth for veterans entering tech.
             </p>
             <Link href={`/insights/${featuredArticle.slug}`} className="text-link">
               Start with the featured article
