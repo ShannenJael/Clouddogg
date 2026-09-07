@@ -96,10 +96,10 @@ export default function HomePage() {
           <div className="hero-panel hero-panel--band">
             <div className="hero-panel__intro">
               <span>Built like a better front door</span>
-              <h2>Three ways people usually arrive at CloudDogg</h2>
+              <h2>Five ways people usually arrive at CloudDogg</h2>
               <p>
                 The redesigned homepage makes the entry path obvious: platform work, AI delivery,
-                blockchain cloud applications, or training and mentorship.
+                blockchain cloud applications, tablet applications, or training and mentorship.
               </p>
             </div>
 
@@ -124,7 +124,7 @@ export default function HomePage() {
             centered
           />
 
-          <div className="card-grid card-grid--three">
+          <div className="card-grid card-grid--four">
             {homeEntryPoints.map((item) => {
               const Icon = item.icon;
 

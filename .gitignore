@@ -2,6 +2,7 @@
 .netlify
 node_modules
 .next
+*.tsbuildinfo
 
 # Large video files (host on CDN)
 public/*.mp4

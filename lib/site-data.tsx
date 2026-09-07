@@ -21,6 +21,7 @@ import {
   School,
   ShieldCheck,
   Sparkles,
+  TabletSmartphone,
   Target,
   Users,
   Wrench,
@@ -94,6 +95,7 @@ export type Partner = {
 export const navLinks: LinkItem[] = [
   { href: "/services", label: "Services" },
   { href: "/insights/blockchain-cloud-applications", label: "Blockchain" },
+  { href: "/tablet-apps", label: "Tablet Apps" },
   { href: "/training", label: "Training" },
   { href: "/about", label: "About" },
   { href: "/insights", label: "Insights" },
@@ -123,6 +125,14 @@ export const homeEntryPoints: Array<IconCard & { href: string; cta: string }> = 
       "LLM integrations, workflow automation, and data pipelines designed to improve operations instead of generating noise.",
     href: "/portfolio",
     cta: "See project work",
+  },
+  {
+    icon: TabletSmartphone,
+    title: "Optimize tablet apps",
+    description:
+      "Turn stretched mobile screens into tablet-ready workflows with richer layouts, touch-first controls, and better use of space.",
+    href: "/tablet-apps",
+    cta: "Plan a tablet app",
   },
   {
     icon: GraduationCap,
@@ -185,7 +195,7 @@ export const services: Service[] = [
     title: "Product and application delivery",
     description:
       "Ship modern web experiences backed by scalable APIs and clean front-end systems that are easier to maintain.",
-    bullets: ["Next.js and React delivery", "API and systems integration", "Design systems and UX refinement"],
+    bullets: ["Next.js and React delivery", "API and systems integration", "Tablet-first UX and app refinement"],
   },
   {
     slug: "fractional-leadership",
@@ -654,6 +664,7 @@ export const footerLinks = {
   company: [
     { href: "/about", label: "About Us" },
     { href: "/services", label: "Services" },
+    { href: "/tablet-apps", label: "Tablet Apps" },
     { href: "/portfolio", label: "Portfolio" },
     { href: "/contact", label: "Contact" },
   ],
@@ -708,6 +719,10 @@ export const capabilityHighlights: Highlight[] = [
     description: "Smart contract, Web3, and audit-friendly application work when blockchain is the right fit.",
   },
   {
+    title: "Tablet applications",
+    description: "Mobile app optimization and tablet-first builds for teams that need larger-screen workflows.",
+  },
+  {
     title: "Training and enablement",
     description: "Mentorship and team development that close the gap between theory and execution.",
   },
@@ -715,8 +730,9 @@ export const capabilityHighlights: Highlight[] = [
 
 export const homeProofPoints = [
   "Veteran-founded delivery with modern product and platform thinking",
-  "Clean paths for services, training, and advisory work",
+  "Clean paths for services, tablet applications, training, and advisory work",
   "Selective blockchain application work where trust, ownership, or auditability matters",
+  "UX-first refresh modeled after the clearer conversion spine seen on Tablet Masters",
 ];
 
 export const platformStack = [

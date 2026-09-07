@@ -337,6 +337,7 @@ ul {
   color: var(--ink-soft);
   font-size: 0.93rem;
   font-weight: 700;
+  white-space: nowrap;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -534,7 +535,7 @@ ul {
 }
 
 .hero-route-list--band {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .hero-route-card {
@@ -1105,7 +1106,7 @@ ul {
   height: 44px;
   border-radius: 999px;
   background: var(--ink);
-  color: #fff;
+  color: var(--bg);
   font-family: var(--font-display), sans-serif;
   font-size: 0.86rem;
   font-weight: 700;
@@ -1133,6 +1134,299 @@ ul {
 
 .services-bottom-panel__copy {
   max-width: 720px;
+}
+
+.tablet-showcase {
+  margin-top: -1rem;
+}
+
+.tablet-showcase__layout,
+.tablet-conversion {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(420px, 1.05fr);
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.tablet-showcase__copy {
+  padding: 2rem;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(96, 165, 250, 0.05)),
+    rgba(17, 17, 17, 0.94);
+  box-shadow: var(--shadow);
+}
+
+.tablet-showcase__copy p:not(.eyebrow) {
+  margin-top: 1rem;
+}
+
+.tablet-signal-list {
+  margin-top: 1.5rem;
+}
+
+.tablet-device {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid rgba(59, 130, 246, 0.24);
+  border-radius: 34px;
+  background:
+    linear-gradient(145deg, #1f2937, #09090b 56%, #111827),
+    rgba(17, 17, 17, 0.96);
+  box-shadow: var(--shadow);
+}
+
+.tablet-device__bezel {
+  position: relative;
+  padding: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  background: #070707;
+}
+
+.tablet-device__camera {
+  position: absolute;
+  top: 50%;
+  left: 0.55rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #1f2937;
+  transform: translateY(-50%);
+}
+
+.tablet-screen {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  min-height: 360px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  background: #101827;
+  aspect-ratio: 4 / 3;
+}
+
+.tablet-screen__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 54px;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(9, 13, 22, 0.92);
+}
+
+.tablet-screen__brand,
+.tablet-screen__status {
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.tablet-screen__status {
+  min-height: 28px;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(74, 222, 128, 0.14);
+  color: var(--success);
+  white-space: nowrap;
+}
+
+.tablet-screen__body {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  min-height: 0;
+}
+
+.tablet-screen__rail {
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: 0.7rem;
+  padding: 1rem 0.75rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(11, 18, 32, 0.9);
+}
+
+.tablet-screen__rail span {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.tablet-screen__rail span.is-active {
+  background: var(--accent);
+  box-shadow: 0 10px 22px rgba(59, 130, 246, 0.35);
+}
+
+.tablet-screen__main {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: minmax(76px, auto);
+  gap: 0.75rem;
+  padding: 1rem;
+  min-width: 0;
+}
+
+.tablet-screen__summary,
+.tablet-screen__pane {
+  min-width: 0;
+  border: 1px solid rgba(96, 165, 250, 0.18);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.tablet-screen__summary {
+  display: grid;
+  align-content: center;
+  gap: 0.2rem;
+  padding: 0.8rem;
+}
+
+.tablet-screen__summary--blue {
+  background: rgba(59, 130, 246, 0.13);
+}
+
+.tablet-screen__summary span,
+.tablet-screen__pane span {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.tablet-screen__summary strong {
+  color: #fff;
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.12rem;
+}
+
+.tablet-screen__pane {
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+  padding: 0.8rem;
+}
+
+.tablet-screen__pane--wide {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.tablet-screen__pane--accent {
+  background: rgba(74, 222, 128, 0.1);
+}
+
+.tablet-screen__pane div {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.tablet-screen__pane div:nth-of-type(2) {
+  width: 82%;
+}
+
+.tablet-screen__pane div:nth-of-type(3) {
+  width: 64%;
+}
+
+.tablet-screen__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 34px;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: var(--success);
+  color: #06120a;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.tablet-feature-card {
+  min-height: 100%;
+}
+
+.tablet-optimization-card {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.tablet-optimization-card__head,
+.tablet-check-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.tablet-optimization-card__head span {
+  color: var(--ink);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.tablet-check-grid {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.tablet-check-item {
+  padding: 0.9rem;
+  border: 1px solid rgba(59, 130, 246, 0.18);
+  border-radius: 16px;
+  background: rgba(8, 8, 8, 0.28);
+}
+
+.tablet-check-item svg {
+  flex: 0 0 auto;
+  color: var(--success);
+}
+
+.tablet-check-item span {
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.tablet-table {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.tablet-table__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  padding: 0.95rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(8, 8, 8, 0.22);
+}
+
+.tablet-table__row span {
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.tablet-table__row span:first-child {
+  color: var(--ink-soft);
+}
+
+.tablet-table__row--head {
+  background: rgba(59, 130, 246, 0.12);
+}
+
+.tablet-table__row--head span {
+  color: var(--support);
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .check-list {
@@ -1631,6 +1925,42 @@ ul {
   font-weight: 700;
 }
 
+@media (max-width: 1120px) {
+  .navbar__toggle {
+    display: flex;
+  }
+
+  .navbar__panel {
+    position: absolute;
+    top: calc(100% + 0.8rem);
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 28px;
+    background: rgba(11, 11, 11, 0.98);
+    box-shadow: var(--shadow);
+  }
+
+  .navbar__panel.is-open {
+    display: flex;
+  }
+
+  .navbar__links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .navbar__link,
+  .navbar__cta {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
 @media (max-width: 1080px) {
   .footer-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1694,7 +2024,9 @@ ul {
   .profile-shell,
   .editorial-spotlight,
   .services-spotlight__grid,
-  .services-mode-grid {
+  .services-mode-grid,
+  .tablet-showcase__layout,
+  .tablet-conversion {
     grid-template-columns: 1fr;
   }
 
@@ -1801,5 +2133,71 @@ ul {
 
   .home-hero__video {
     object-position: 100% center;
+  }
+
+  .tablet-device {
+    padding: 0.55rem;
+    border-radius: 24px;
+  }
+
+  .tablet-device__bezel {
+    padding: 0.7rem;
+    border-radius: 20px;
+  }
+
+  .tablet-device__camera {
+    display: none;
+  }
+
+  .tablet-screen {
+    min-height: 310px;
+    border-radius: 14px;
+    aspect-ratio: auto;
+  }
+
+  .tablet-screen__toolbar {
+    min-height: 48px;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .tablet-screen__brand,
+  .tablet-screen__status {
+    font-size: 0.7rem;
+  }
+
+  .tablet-screen__body {
+    grid-template-columns: 52px 1fr;
+  }
+
+  .tablet-screen__rail {
+    gap: 0.55rem;
+    padding: 0.75rem 0.55rem;
+  }
+
+  .tablet-screen__rail span {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+  }
+
+  .tablet-screen__main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    padding: 0.65rem;
+  }
+
+  .tablet-screen__pane--wide,
+  .tablet-screen__pane--accent {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  .tablet-screen__summary,
+  .tablet-screen__pane {
+    border-radius: 12px;
+  }
+
+  .tablet-table__row {
+    grid-template-columns: 1fr;
   }
 }
