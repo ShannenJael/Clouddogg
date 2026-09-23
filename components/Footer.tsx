@@ -36,7 +36,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <Link href="/" className="footer-brand__logo" aria-label="CloudDogg Home">
-              <Image src="/logo.png" alt="CloudDogg" width={48} height={48} />
+              <img src="/logo.png" alt="CloudDogg" width={48} height={48} />
               <div>
                 <span>CloudDogg</span>
                 <small>Veteran-founded cloud strategy, delivery, and training.</small>

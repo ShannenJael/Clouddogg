@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowRight } from "lucide-react";
@@ -49,7 +48,7 @@ export default function Navbar() {
       <nav className="container navbar" aria-label="Main navigation">
         <div className="navbar__shell">
           <Link href="/" className="navbar__brand" aria-label="CloudDogg Home">
-            <Image src="/logo.png" alt="CloudDogg" width={40} height={40} priority />
+            <img src="/logo.png" alt="CloudDogg" width={40} height={40} />
             <div>
               <span className="navbar__name">CloudDogg</span>
               <span className="navbar__tag">Cloud strategy and delivery</span>
