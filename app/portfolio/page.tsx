@@ -61,7 +61,8 @@ const proofPatterns = [
   },
 ];
 
-const [leadCase, secondaryCase, ...remainingCases] = portfolioProjects;
+const featuredCases = portfolioProjects.filter((project) => project.featured);
+const remainingCases = portfolioProjects.filter((project) => !project.featured);
 
 export default function PortfolioPage() {
   return (
@@ -163,7 +164,7 @@ export default function PortfolioPage() {
           />
 
           <div className="case-spotlight-grid">
-            {[leadCase, secondaryCase].map((project) => {
+            {featuredCases.map((project) => {
               const Icon = project.icon;
 
               return (

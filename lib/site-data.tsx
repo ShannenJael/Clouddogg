@@ -66,6 +66,7 @@ export type Project = {
   summary: string;
   outcome: string;
   tags: string[];
+  featured?: boolean;
 };
 
 export type Article = {
@@ -259,6 +260,7 @@ export const portfolioProjects: Project[] = [
       "Migrated a healthcare provider from aging on-prem systems into a more secure AWS and Azure operating model with stronger access controls and recovery planning.",
     outcome: "Reduced infrastructure cost by 40% while improving uptime confidence and compliance posture.",
     tags: ["AWS", "Azure", "HIPAA", "Terraform"],
+    featured: true,
   },
   {
     icon: Cpu,
@@ -268,6 +270,7 @@ export const portfolioProjects: Project[] = [
       "Built an internal AI-assisted support workflow that routed questions, summarized context, and reduced repetitive ticket handling for customer teams.",
     outcome: "Lowered ticket volume by 65% and shortened response times for high-frequency requests.",
     tags: ["LLM", "Python", "Automation", "Knowledge Base"],
+    featured: true,
   },
   {
     icon: ShieldCheck,
@@ -313,6 +316,88 @@ export const portfolioProjects: Project[] = [
       "Built a unified reporting surface for operational and leadership teams pulling from multiple fragmented systems.",
     outcome: "Cut reporting lag dramatically and gave leaders faster access to usable performance signals.",
     tags: ["Warehousing", "Dashboards", "ETL", "Observability"],
+  },
+  {
+    icon: ShieldCheck,
+    category: "Defense DevSecOps",
+    title: "Zero-trust air-gapped enclave delivery",
+    summary:
+      "Packaged a mission-critical federal monitoring platform for isolated enclave delivery, aligning 13 interdependent repositories, CAC mutual-TLS authentication, local identity validation, and database handoff into a repeatable release motion.",
+    outcome:
+      "Eliminated repository drift, reduced release sync cycles from days to minutes, enabled reproducible CAC authentication testing offline, and added a fast rollback path.",
+    tags: ["Zero Trust", "DevSecOps", "CAC", "Release Automation"],
+    featured: true,
+  },
+  {
+    icon: DatabaseZap,
+    category: "Earth science and public safety",
+    title: "Real-time seismic telemetry infrastructure",
+    summary:
+      "Automated infrastructure for real-time geophysical ingestion, combining Ansible provisioning, hardened remote access, station health polling, waveform visualization, and event catalog distribution for sensor networks.",
+    outcome:
+      "Reduced station onboarding and server provisioning from 8+ hours to a repeatable 15-minute deployment while improving stream resilience for real-time analysis.",
+    tags: ["Ansible", "Telemetry", "Observability", "Public Safety"],
+    featured: true,
+  },
+  {
+    icon: CloudUpload,
+    category: "Cloud platform engineering",
+    title: "Immutable multi-runner CI/CD failover",
+    summary:
+      "Architected resilient enterprise build pipelines with primary and secondary runner pools, fallback orchestration, and automated artifact publishing.",
+    outcome:
+      "Removed single points of failure in continuous integration so builds could continue through maintenance windows and runner outages.",
+    tags: ["CI/CD", "GitLab", "Runners", "Failover"],
+  },
+  {
+    icon: CloudCog,
+    category: "Cloud platform engineering",
+    title: "Transit gateway VPC isolation",
+    summary:
+      "Engineered multi-tier CloudFormation environments separating private database subnets, container application tiers, and public load balancers through transit gateways and private endpoints.",
+    outcome:
+      "Strengthened network boundary defense while keeping application-to-database communication fast and operationally predictable.",
+    tags: ["AWS", "CloudFormation", "VPC", "PrivateLink"],
+  },
+  {
+    icon: ShieldCheck,
+    category: "Security and compliance",
+    title: "Automated SAST and remediation reporting",
+    summary:
+      "Integrated enterprise static analysis into CI/CD pipelines across Java, C/C++, and Python codebases, then grouped CWE findings into developer-ready and executive-ready reports.",
+    outcome:
+      "Reduced false positives by 40%, streamlined vulnerability remediation, and improved audit evidence for regulated authorization reviews.",
+    tags: ["SAST", "CWE", "Fortify", "Compliance"],
+  },
+  {
+    icon: Fingerprint,
+    category: "Security and compliance",
+    title: "CAC mutual-TLS emulation framework",
+    summary:
+      "Created an offline PKI test harness for federal smart-card authentication flows, Java truststores, identity realms, and mutual-TLS handshakes on commercial workstations.",
+    outcome:
+      "Allowed engineers to test and debug CAC authentication locally before isolated-network staging.",
+    tags: ["CAC", "PKI", "Keycloak", "mTLS"],
+  },
+  {
+    icon: DatabaseZap,
+    category: "Data modernization",
+    title: "Air-gapped Oracle 19c RDS migration",
+    summary:
+      "Engineered an in-VPC Fargate runner that connected to private Oracle 19c databases, executed Data Pump exports, and streamed migration packages to Amazon S3.",
+    outcome:
+      "Moved mission-critical legacy data without exposing database endpoints to the internet and cut export time to under 2 minutes.",
+    tags: ["Oracle 19c", "AWS Fargate", "S3", "Migration"],
+  },
+  {
+    icon: BrainCircuit,
+    category: "FinTech and AI automation",
+    title: "AI trading engine risk safeguards",
+    summary:
+      "Decoupled and containerized a multi-threaded trading engine with real-time WebSocket feeds, taker risk guards, AI strategy assistance, and mobile-ready controls.",
+    outcome:
+      "Reduced execution slippage and helped prevent errant orders during extreme market volatility.",
+    tags: ["AI", "WebSockets", "Containers", "Risk"],
   },
 ];
 
