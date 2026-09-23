@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MoveLeft, MoveRight } from "lucide-react";
+import { ArrowUpRight, MoveLeft, MoveRight } from "lucide-react";
 import CTASection from "@/components/CTASection";
 import { articles } from "@/lib/site-data";
 
@@ -91,6 +91,17 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               <section key={section.title} className="article-body__section">
                 <h2>{section.title}</h2>
                 <p>{section.body}</p>
+                {section.cta && (
+                  <a
+                    className="text-link article-body__link"
+                    href={section.cta.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {section.cta.label}
+                    <ArrowUpRight size={16} />
+                  </a>
+                )}
               </section>
             ))}
           </article>

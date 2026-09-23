@@ -80,6 +80,7 @@ export type Article = {
   sections: Array<{
     title: string;
     body: string;
+    cta?: LinkItem;
   }>;
 };
 
@@ -617,6 +618,15 @@ export const articles: Article[] = [
         title: "Keep the product experience grounded",
         body:
           "Users still need clean onboarding, clear account flows, useful notifications, and stable performance. The cloud application around the chain often determines whether the product feels trustworthy enough to use.",
+      },
+      {
+        title: "Case study: Crypto.com API scalper",
+        body:
+          "CloudDogg recently built a Crypto.com API scalper as a practical blockchain-connected cloud application. The platform combines a Flask backend, installable PWA interface, live Crypto.com market data, signed API order execution, paper and live trading modes, seconds-based scalping, Grid and DCA automation, AI radar momentum analysis, and an AI copilot for trade review and action cards. It is the kind of blockchain work that belongs in a cloud strategy: focused APIs, risk controls, operational visibility, and a user experience people can actually use.",
+        cta: {
+          href: "https://cdcscalper.com/",
+          label: "View the Crypto.com API scalper",
+        },
       },
       {
         title: "Design for risk and operations early",
