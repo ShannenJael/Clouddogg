@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight, MoveLeft, MoveRight } from "lucide-react";
@@ -38,21 +39,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   if (!article) notFound();
 
   const relatedArticles = articles.filter((entry) => entry.slug !== article.slug).slice(0, 3);
+  const isBlockchainArticle = article.slug === "blockchain-cloud-applications";
 
   return (
     <main>
-      <section className={`page-hero article-hero${article.slug === "blockchain-cloud-applications" ? " article-hero--video" : ""}`}>
-        {article.slug === "blockchain-cloud-applications" && (
-          <video
-            className="article-hero__bg-video"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src="/videos/blockchain-hero.mp4" type="video/mp4" />
-          </video>
-        )}
+      <section className={`page-hero article-hero${isBlockchainArticle ? " article-hero--blockchain" : ""}`}>
         <div className="container">
           <div className="page-hero__inner article-hero__content">
             <Link href="/insights" className="text-link text-link--back">
@@ -60,16 +51,24 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               Back to insights
             </Link>
             <p className="eyebrow">{article.category}</p>
-            {article.slug === "blockchain-cloud-applications" ? (
-              <h3>{article.title}</h3>
-            ) : (
-              <h1>{article.title}</h1>
-            )}
+            <h1>{article.title}</h1>
             <p className="page-hero__copy">{article.excerpt}</p>
             <div className="article-hero__meta">
               <span>{article.date}</span>
               <span>{article.readTime}</span>
             </div>
+            {isBlockchainArticle && (
+              <figure className="article-hero__visual">
+                <Image
+                  src="/images/blockchain-symbol.webp"
+                  alt="Glowing digital chain links symbolizing blockchain infrastructure"
+                  width={1000}
+                  height={750}
+                  priority
+                  sizes="(max-width: 720px) calc(100vw - 3rem), (max-width: 1180px) calc(100vw - 6rem), 980px"
+                />
+              </figure>
+            )}
           </div>
         </div>
       </section>

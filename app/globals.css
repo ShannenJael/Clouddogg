@@ -1624,6 +1624,58 @@ ul {
   margin: 0 auto;
 }
 
+.article-hero--blockchain {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    linear-gradient(180deg, rgba(7, 11, 19, 0.78), rgba(7, 11, 19, 0.96)),
+    linear-gradient(135deg, rgba(59, 130, 246, 0.18), rgba(8, 13, 24, 0.92));
+}
+
+.article-hero--blockchain .article-hero__content {
+  max-width: 1040px;
+  border-color: rgba(96, 165, 250, 0.32);
+  background:
+    linear-gradient(145deg, rgba(13, 19, 32, 0.94), rgba(7, 10, 18, 0.9)),
+    rgba(17, 17, 17, 0.88);
+}
+
+.article-hero--blockchain .article-hero__meta {
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.article-hero--blockchain .article-hero__meta span {
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  background: rgba(59, 130, 246, 0.14);
+  color: #dbeafe;
+}
+
+.article-hero__visual {
+  position: relative;
+  overflow: hidden;
+  margin: 2rem auto 0;
+  padding: 0.7rem;
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(96, 165, 250, 0.16), rgba(15, 23, 42, 0.66)),
+    rgba(3, 7, 18, 0.76);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
+}
+
+.article-hero__visual::after {
+  content: "";
+  position: absolute;
+  inset: 0.7rem;
+  pointer-events: none;
+  border-radius: 20px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    inset 0 -70px 90px rgba(3, 7, 18, 0.26);
+}
+
 .article-hero__image {
   width: 100%;
   height: auto;
@@ -1631,24 +1683,12 @@ ul {
   margin-bottom: 1.5rem;
 }
 
-.article-hero--video {
-  position: relative;
-  overflow: hidden;
-}
-
-.article-hero__bg-video {
-  position: absolute;
-  inset: 0;
+.article-hero__visual img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
-  z-index: 0;
-  opacity: 0.5;
-}
-
-.article-hero--video .container {
-  position: relative;
-  z-index: 1;
+  border-radius: 20px;
 }
 
 .legal-layout {
@@ -2087,6 +2127,22 @@ ul {
   .services-spotlight__panel,
   .services-bottom-panel {
     padding: 1.5rem;
+  }
+
+  .article-hero__visual {
+    margin-top: 1.5rem;
+    padding: 0.45rem;
+    border-radius: 20px;
+  }
+
+  .article-hero__visual::after {
+    inset: 0.45rem;
+    border-radius: 16px;
+  }
+
+  .article-hero__visual img {
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
   }
 
   .card-grid--three,
