@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight, MoveLeft, MoveRight } from "lucide-react";
@@ -59,13 +58,13 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </div>
             {isBlockchainArticle && (
               <figure className="article-hero__visual">
-                <Image
+                <img
                   src="/images/blockchain-symbol.webp"
                   alt="Glowing digital chain links symbolizing blockchain infrastructure"
                   width={1000}
                   height={750}
-                  priority
-                  sizes="(max-width: 720px) calc(100vw - 3rem), (max-width: 1180px) calc(100vw - 6rem), 980px"
+                  loading="eager"
+                  decoding="async"
                 />
               </figure>
             )}
