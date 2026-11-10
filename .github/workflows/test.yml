@@ -27,6 +27,9 @@ jobs:
       - run: npm run build
       - run: npm run typecheck
       - run: npm run test:e2e
+        env:
+          # Firefox needs the home directory of the container's current user.
+          HOME: /root
       - uses: actions/upload-artifact@v7
         if: always()
         with:
