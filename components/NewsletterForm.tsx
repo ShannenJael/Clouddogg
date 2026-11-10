@@ -3,13 +3,14 @@
 import { useState } from "react";
 
 export default function NewsletterForm({ compact = false }: { compact?: boolean }) {
-  const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "err">("idle");
   const [message, setMessage] = useState("");
 
-  async function handleSubmit(event: React.FormEvent) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (status === "loading") return;
+    const form = event.currentTarget;
+    const email = new FormData(form).get("email");
     setStatus("loading");
     setMessage("");
 
@@ -24,7 +25,7 @@ export default function NewsletterForm({ compact = false }: { compact?: boolean 
       const success = response.ok && payload.success;
       setStatus(success ? "ok" : "err");
       setMessage(success ? "Subscription request received." : payload.message || "Something went wrong. Please try again.");
-      if (success) setEmail("");
+      if (success) form.reset();
     } catch {
       setStatus("err");
       setMessage("Network error. Please try again.");
@@ -36,11 +37,10 @@ export default function NewsletterForm({ compact = false }: { compact?: boolean 
       <div className={compact ? "footer-form" : "newsletter-form__row"}>
         <input
           type="email"
+          name="email"
           required
           autoComplete="email"
           maxLength={254}
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
           placeholder="Enter your email address"
           aria-label="Email address"
         />

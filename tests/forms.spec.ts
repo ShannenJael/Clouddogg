@@ -45,6 +45,7 @@ for (const location of ["footer", "insights", "home"]) {
   test(`${location} newsletter shows failure and allows retry`, async ({ page }) => {
     let attempts = 0;
     await page.route("**/api/newsletter", route => {
+      expect(route.request().postDataJSON()).toEqual({ email: "test@example.com" });
       attempts++;
       return route.fulfill({ status: attempts === 1 ? 503 : 200,
         json: attempts === 1 ? { success: false, message: "Subscriptions are temporarily unavailable." } : { success: true } });
