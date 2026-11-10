@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useHydrated } from "@/lib/use-hydrated";
 
 export default function NewsletterForm({ compact = false }: { compact?: boolean }) {
+  const hydrated = useHydrated();
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "err">("idle");
   const [message, setMessage] = useState("");
 
@@ -33,7 +35,7 @@ export default function NewsletterForm({ compact = false }: { compact?: boolean 
   }
 
   return (
-    <form onSubmit={handleSubmit} className={compact ? "footer-newsletter" : "newsletter-form"}>
+    <form method="post" onSubmit={handleSubmit} className={compact ? "footer-newsletter" : "newsletter-form"}>
       <div className={compact ? "footer-form" : "newsletter-form__row"}>
         <input
           type="email"
@@ -44,7 +46,7 @@ export default function NewsletterForm({ compact = false }: { compact?: boolean 
           placeholder="Enter your email address"
           aria-label="Email address"
         />
-        <button type="submit" className="button button--primary" disabled={status === "loading"}>
+        <button type="submit" className="button button--primary" disabled={!hydrated || status === "loading"}>
           {status === "loading" ? "Subscribing..." : "Subscribe"}
         </button>
       </div>

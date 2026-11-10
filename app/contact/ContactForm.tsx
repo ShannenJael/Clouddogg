@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useHydrated } from "@/lib/use-hydrated";
 
 type Status = "idle" | "loading" | "ok" | "err";
 
 export default function ContactForm() {
+  const hydrated = useHydrated();
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
 
@@ -42,7 +44,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form className="contact-form" method="post" onSubmit={handleSubmit}>
       <div className="form-grid">
         <div className="form-field">
           <label htmlFor="first_name">First Name *</label>
@@ -98,7 +100,7 @@ export default function ContactForm() {
       <button
         type="submit"
         className="button button--primary contact-form__submit"
-        disabled={status === "loading"}
+        disabled={!hydrated || status === "loading"}
       >
         {status === "loading" ? "Sending..." : "Send message"}
       </button>

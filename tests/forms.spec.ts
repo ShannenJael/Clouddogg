@@ -6,6 +6,30 @@ test.beforeEach(async ({ page }, testInfo) => {
   }
 });
 
+for (const [path, selector, inputSelector, value] of [
+  ["/contact", ".contact-form", "#first_name", "Test Visitor"],
+  ["/insights", ".newsletter-form", 'input[name="email"]', "test@example.com"],
+]) {
+  test(`${selector} waits for JavaScript before enabling submission`, async ({ page }) => {
+    let releaseScripts!: () => void;
+    const scriptsReady = new Promise<void>(resolve => { releaseScripts = resolve; });
+    await page.route("**/_next/static/**/*.js", async route => {
+      await scriptsReady;
+      await route.continue();
+    });
+    const form = page.locator(selector);
+    try {
+      await page.goto(path, { waitUntil: "commit" });
+      await expect(form.getByRole("button", { name: /Send message|Subscribe/ })).toBeDisabled();
+      await form.locator(inputSelector).fill(value);
+    } finally {
+      releaseScripts();
+    }
+    await expect(form.getByRole("button", { name: /Send message|Subscribe/ })).toBeEnabled();
+    await expect(form.locator(inputSelector)).toHaveValue(value);
+  });
+}
+
 test("contact rejects empty and invalid fields before sending", async ({ page }) => {
   let requests = 0;
   await page.route("**/api/contact", route => { requests++; return route.fulfill({ json: { success: true } }); });
