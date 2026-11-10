@@ -1,27 +1,32 @@
-import { NextRequest, NextResponse } from "next/server";
+﻿import { NextRequest, NextResponse } from "next/server";
+import { isEmail, isObject, textField } from "@/lib/form-validation";
+import { MailUnavailableError, sendSiteMail } from "@/lib/mail";
 
-// TODO: Connect to a newsletter service (e.g. Mailchimp, ConvertKit, Resend Audiences)
-// to actually store subscribers. For now this endpoint validates and acknowledges.
 export async function POST(req: NextRequest) {
-  try {
-    const body = await req.json();
-    const { email } = body;
-
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return NextResponse.json(
-        { success: false, message: "Please provide a valid email address." },
-        { status: 400 }
-      );
-    }
-
-    // Log subscription server-side for now
-    console.log("Newsletter subscription:", email);
-
-    return NextResponse.json({ success: true });
-  } catch {
+  const body: unknown = await req.json().catch(() => null);
+  const email = isObject(body) ? textField(body.email, 254) : undefined;
+  if (!email || !isEmail(email)) {
     return NextResponse.json(
-      { success: false, message: "Server error. Please try again." },
-      { status: 500 }
+      { success: false, message: "Please provide a valid email address." },
+      { status: 400 }
+    );
+  }
+
+  try {
+    // Deliver the request to the existing inbox for subscription management.
+    // Only acknowledge it once SMTP confirms receipt; never log subscriber data.
+    await sendSiteMail({
+      replyTo: email,
+      subject: "New CloudDogg newsletter subscription request",
+      text: `Newsletter subscription requested by: ${email}\n\nPlease add this address to the CloudDogg newsletter through your subscription management process.`,
+    });
+    return NextResponse.json({ success: true, message: "Subscription request received." });
+  } catch (error) {
+    const unavailable = error instanceof MailUnavailableError;
+    console.error("Newsletter delivery failed:", unavailable ? "not configured" : "mail delivery error");
+    return NextResponse.json(
+      { success: false, message: "We couldn't save your subscription request. Please try again or email service@clouddogg.com." },
+      { status: unavailable ? 503 : 502 }
     );
   }
 }

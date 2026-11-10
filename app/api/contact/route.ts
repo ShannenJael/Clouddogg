@@ -1,50 +1,46 @@
-import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
-
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,       // e.g. mail.clouddogg.com
-  port: Number(process.env.SMTP_PORT) || 587,
-  secure: false,                      // true for port 465, false for 587
-  auth: {
-    user: process.env.SMTP_USER,     // your Bluehost email address
-    pass: process.env.SMTP_PASS,     // your Bluehost email password
-  },
-});
+﻿import { NextRequest, NextResponse } from "next/server";
+import { isEmail, isObject, textField } from "@/lib/form-validation";
+import { MailUnavailableError, sendSiteMail } from "@/lib/mail";
 
 export async function POST(req: NextRequest) {
+  const body: unknown = await req.json().catch(() => null);
+  if (!isObject(body)) {
+    return NextResponse.json({ success: false, message: "Please provide a valid form submission." }, { status: 400 });
+  }
+
+  const firstName = textField(body.first_name, 100);
+  const lastName = textField(body.last_name, 100);
+  const email = textField(body.email, 254);
+  const message = textField(body.message, 5000);
+  const phone = body.phone === undefined ? "" : textField(body.phone, 50);
+  const service = body.service === undefined ? "" : textField(body.service, 100);
+
+  if (!firstName || !lastName || !email || !isEmail(email) || !message || phone === undefined || service === undefined) {
+    return NextResponse.json(
+      { success: false, message: "Please fill in all required fields and provide a valid email address. Keep your message under 5,000 characters." },
+      { status: 400 }
+    );
+  }
+
   try {
-    const body = await req.json();
-    const { first_name, last_name, email, phone, service, message } = body;
-
-    if (!first_name || !last_name || !email || !message) {
-      return NextResponse.json(
-        { success: false, message: "Please fill in all required fields." },
-        { status: 400 }
-      );
-    }
-
-    await transporter.sendMail({
-      from: `"CloudDogg Contact Form" <${process.env.SMTP_USER}>`,
-      to: "service@clouddogg.com",
+    await sendSiteMail({
       replyTo: email,
-      subject: `New project inquiry from ${first_name} ${last_name}`,
+      subject: `New project inquiry from ${firstName} ${lastName}`,
       text: [
-        `Name: ${first_name} ${last_name}`,
+        `Name: ${firstName} ${lastName}`,
         `Email: ${email}`,
         `Phone: ${phone || "Not provided"}`,
         `Service Interest: ${service || "Not specified"}`,
-        ``,
-        `Message:`,
-        message,
+        "", "Message:", message,
       ].join("\n"),
     });
-
     return NextResponse.json({ success: true });
-  } catch (err) {
-    console.error("Contact form error:", err);
+  } catch (error) {
+    const unavailable = error instanceof MailUnavailableError;
+    console.error("Contact delivery failed:", unavailable ? "not configured" : "mail delivery error");
     return NextResponse.json(
-      { success: false, message: "Server error. Please try again." },
-      { status: 500 }
+      { success: false, message: "We couldn't send your message. Please try again or email service@clouddogg.com." },
+      { status: unavailable ? 503 : 502 }
     );
   }
 }

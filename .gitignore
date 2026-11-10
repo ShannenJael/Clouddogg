@@ -3,6 +3,11 @@
 node_modules
 .next
 *.tsbuildinfo
+.cache/
+.env*
+!.env.example
+playwright-report/
+test-results/
 
 # Large video files (host on CDN)
 public/*.mp4

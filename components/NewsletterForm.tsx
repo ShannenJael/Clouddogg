@@ -2,13 +2,16 @@
 
 import { useState } from "react";
 
-export default function NewsletterForm() {
+export default function NewsletterForm({ compact = false }: { compact?: boolean }) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "err">("idle");
+  const [message, setMessage] = useState("");
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
+    if (status === "loading") return;
     setStatus("loading");
+    setMessage("");
 
     try {
       const response = await fetch("/api/newsletter", {
@@ -18,20 +21,24 @@ export default function NewsletterForm() {
       });
 
       const payload = await response.json();
-      setStatus(payload.success ? "ok" : "err");
-
-      if (payload.success) setEmail("");
+      const success = response.ok && payload.success;
+      setStatus(success ? "ok" : "err");
+      setMessage(success ? "Subscription request received." : payload.message || "Something went wrong. Please try again.");
+      if (success) setEmail("");
     } catch {
       setStatus("err");
+      setMessage("Network error. Please try again.");
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="newsletter-form">
-      <div className="newsletter-form__row">
+    <form onSubmit={handleSubmit} className={compact ? "footer-newsletter" : "newsletter-form"}>
+      <div className={compact ? "footer-form" : "newsletter-form__row"}>
         <input
           type="email"
           required
+          autoComplete="email"
+          maxLength={254}
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           placeholder="Enter your email address"
@@ -42,12 +49,11 @@ export default function NewsletterForm() {
         </button>
       </div>
 
-      {status === "ok" ? <p className="form-note form-note--success">Subscribed successfully.</p> : null}
-      {status === "err" ? <p className="form-note form-note--error">Something went wrong. Please try again.</p> : null}
+      {message ? <p role="status" className={`form-note ${status === "ok" ? "form-note--success" : "form-note--error"}`}>{message}</p> : null}
 
-      <p className="newsletter-form__caption">
+      {!compact ? <p className="newsletter-form__caption">
         Occasional product, cloud, AI, blockchain, and training updates. No spam.
-      </p>
+      </p> : null}
     </form>
   );
 }

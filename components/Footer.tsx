@@ -1,35 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { footerLinks } from "@/lib/site-data";
+import NewsletterForm from "@/components/NewsletterForm";
 
 export default function Footer() {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "ok" | "err">("idle");
-
-  async function handleSubmit(event: React.FormEvent) {
-    event.preventDefault();
-    setStatus("loading");
-
-    try {
-      const response = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-
-      const payload = await response.json();
-      setStatus(payload.success ? "ok" : "err");
-
-      if (payload.success) setEmail("");
-    } catch {
-      setStatus("err");
-    }
-  }
-
   return (
     <footer className="site-footer">
       <div className="container">
@@ -49,9 +26,9 @@ export default function Footer() {
             </p>
 
             <div className="footer-contact-list">
-              <a href="mailto:joshua.dixon@clouddogg.com">
+              <a href="mailto:service@clouddogg.com">
                 <Mail size={16} />
-                joshua.dixon@clouddogg.com
+                service@clouddogg.com
               </a>
               <a href="tel:+18503765811">
                 <Phone size={16} />
@@ -91,21 +68,7 @@ export default function Footer() {
             <p className="footer-signup-copy">
               Get cloud, AI, blockchain, training, and product thinking delivered to your inbox.
             </p>
-            <form onSubmit={handleSubmit} className="footer-form">
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                placeholder="Email address"
-                aria-label="Email address"
-              />
-              <button type="submit" className="button button--primary" disabled={status === "loading"}>
-                {status === "loading" ? "Sending..." : "Subscribe"}
-              </button>
-            </form>
-            {status === "ok" ? <p className="form-note form-note--success">Subscribed successfully.</p> : null}
-            {status === "err" ? <p className="form-note form-note--error">Please try again.</p> : null}
+            <NewsletterForm compact />
 
             <div className="footer-socials">
               {footerLinks.socials.map((item) => (

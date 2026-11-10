@@ -1,7 +1,5 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  ArrowUpRight,
-  BadgeCheck,
   Blocks,
   BrainCircuit,
   BriefcaseBusiness,

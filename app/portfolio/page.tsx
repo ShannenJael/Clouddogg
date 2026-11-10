@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, MoveRight } from "lucide-react";
+import { BadgeCheck, MoveRight } from "lucide-react";
 import CTASection from "@/components/CTASection";
 import PageHero from "@/components/PageHero";
 import SectionIntro from "@/components/SectionIntro";

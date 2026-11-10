@@ -8,7 +8,6 @@ import {
   LayoutTemplate,
   MonitorSmartphone,
   PanelsTopLeft,
-  Rows3,
   TabletSmartphone,
   Touchpad,
   Workflow,

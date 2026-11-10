@@ -34,8 +34,6 @@ export default function HomePage() {
             preload="metadata"
           >
             <source src="/hero-bg.mp4" type="video/mp4" />
-            <source src="/hero-bg.mov" type="video/quicktime" />
-            <source src="/Clouddogg_Video.mp4" type="video/mp4" />
           </video>
           <div className="home-hero__veil" />
         </div>

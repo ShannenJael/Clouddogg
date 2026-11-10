@@ -9,7 +9,12 @@ export default function CookieBanner() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const existingValue = localStorage.getItem(COOKIE_KEY);
+    let existingValue: string | null = null;
+    try {
+      existingValue = localStorage.getItem(COOKIE_KEY);
+    } catch {
+      // The banner still works when browser storage is unavailable.
+    }
 
     if (!existingValue) {
       const timer = window.setTimeout(() => setVisible(true), 1200);
@@ -18,7 +23,11 @@ export default function CookieBanner() {
   }, []);
 
   function dismiss(value: "accepted" | "declined") {
-    localStorage.setItem(COOKIE_KEY, value);
+    try {
+      localStorage.setItem(COOKIE_KEY, value);
+    } catch {
+      // The visitor can dismiss the banner for this page without persistence.
+    }
     setVisible(false);
   }
 

@@ -21,10 +21,6 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     if (!isOpen) {
       document.body.style.overflow = "";
       return;
@@ -47,7 +43,7 @@ export default function Navbar() {
     <header className={`site-header${isScrolled ? " site-header--scrolled" : ""}`}>
       <nav className="container navbar" aria-label="Main navigation">
         <div className="navbar__shell">
-          <Link href="/" className="navbar__brand" aria-label="CloudDogg Home">
+          <Link href="/" className="navbar__brand" aria-label="CloudDogg Home" onClick={() => setIsOpen(false)}>
             <img src="/logo.png" alt="CloudDogg" width={40} height={40} />
             <div>
               <span className="navbar__name">CloudDogg</span>
@@ -79,6 +75,7 @@ export default function Navbar() {
                       href={link.href}
                       className={`navbar__link${isActive ? " is-active" : ""}`}
                       aria-current={isActive ? "page" : undefined}
+                      onClick={() => setIsOpen(false)}
                     >
                       {link.label}
                     </Link>
@@ -89,6 +86,7 @@ export default function Navbar() {
 
             <Link
               href="/contact"
+              onClick={() => setIsOpen(false)}
               className={`button button--primary navbar__cta${
                 pathname === "/contact" ? " is-active" : ""
               }`}

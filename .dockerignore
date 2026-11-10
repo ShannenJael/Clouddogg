@@ -2,6 +2,10 @@
 .gitignore
 .next
 node_modules
+.cache
+.netlify
+playwright-report
+test-results
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

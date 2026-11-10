@@ -1829,7 +1829,7 @@ ul {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 0.7fr 0.7fr 1fr;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.7fr) minmax(0, 0.7fr) minmax(0, 1fr);
   gap: 1.5rem;
 }
 
@@ -1906,7 +1906,22 @@ ul {
 }
 
 .footer-form .button {
-  min-width: 140px;
+  min-width: 0;
+  padding-inline: 1rem;
+}
+
+.footer-form input {
+  min-width: 0;
+}
+
+.footer-contact-list a {
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 .footer-socials {
