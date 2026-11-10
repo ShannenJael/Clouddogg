@@ -29,6 +29,8 @@ Playwright starts the production build on port 3100 and a loopback-only test mai
 
 Use `npm run test:report` to view the HTML report. GitHub Actions runs the same checks and retains the report for seven days.
 
+CI uses the official Playwright 1.64.1 image with browsers and system libraries already installed. Keep the image tag and pinned `@playwright/test` version in sync when updating the test runner.
+
 To test an existing deployment in PowerShell:
 
 ```powershell
